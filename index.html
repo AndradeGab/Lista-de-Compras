@@ -26,20 +26,7 @@
         <ul id="lista"></ul>
     </div>
     </div>
-
-    <script>
-        function comprarLista(event) {
-            event.preventDefault(); //impedir recarregar página NÃO ESQUEÇA
-
-            const produtos = document.querySelector("#produtos").value;
-
-            const lista = document.querySelector("#lista");
-
-            const produtoLi = "<li>" + produtos + "</li>"; //elemento dinâmico.
-            lista.innerHTML = lista.innerHTML + produtoLi;
-            console.log(lista)
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>
