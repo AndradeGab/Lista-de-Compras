@@ -1,17 +1,23 @@
-function comprarLista(event) {
-    event.preventDefault();
+const produtos = [{nome:"Refrigerante",quantidade: 3}];
 
+function renderizarProdutos(){
     const lista = document.querySelector("#lista");
-    const input = document.querySelector("#produtos");
-    const produtoDigitado = input.value;
+    lista.innerHTML = "";
 
-    // cria o LI
+    for(let produto of produtos){
+        console.log(produto)
+        // cria o LI
     const produtoLi = document.createElement("li");
 
     // cria o texto
     const spanProduto = document.createElement("span");
-    spanProduto.textContent = produtoDigitado;
+    spanProduto.textContent = produto.nome;
     produtoLi.appendChild(spanProduto);
+
+     const spanQuant = document.createElement("span");
+    spanQuant.textContent = produto.quantidade;
+    produtoLi.appendChild(spanQuant);
+
 
     // botão remover
     const btnRemover = document.createElement("button");
@@ -32,10 +38,27 @@ function comprarLista(event) {
 
     // adiciona na lista
     lista.appendChild(produtoLi);
+    }
+}
 
+renderizarProdutos()
+
+function comprarLista(event) {
+    event.preventDefault();
+
+    const lista = document.querySelector("#lista");
+    const input = document.querySelector("#produtos");
+    const produtoDigitado = input.value;
+
+    
+    produtos.push(produtoDigitado);
+
+    renderizarProdutos()
     // limpa input
     input.value = "";
 }
+
+
 
     //InnetHTML.
     //const produtoLi = "<li>" + produtos + "</li>"; 
