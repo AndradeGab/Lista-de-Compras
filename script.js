@@ -7,37 +7,38 @@ function renderizarProdutos(){
     for(let produto of produtos){
         console.log(produto)
         // cria o LI
-    const produtoLi = document.createElement("li");
+        const produtoLi = document.createElement("li");
 
     // cria o texto
-    const spanProduto = document.createElement("span");
-    spanProduto.textContent = produto.nome;
-    produtoLi.appendChild(spanProduto);
+        const spanProduto = document.createElement("span");
+        spanProduto.textContent = produto.nome;
+        produtoLi.appendChild(spanProduto);
 
-     const spanQuant = document.createElement("span");
-    spanQuant.textContent = produto.quantidade;
-    produtoLi.appendChild(spanQuant);
+        const spanQuant = document.createElement("span");
+        spanQuant.textContent = `(X${produto.quantidade})`
+        produtoLi.appendChild(spanQuant);
 
 
-    // botão remover
-    const btnRemover = document.createElement("button");
-    btnRemover.textContent = "Remover";
-    btnRemover.onclick = function() {
-        produtoLi.remove();
-    };
-    produtoLi.appendChild(btnRemover);
 
-    // botão alterar
-    const btnAlterar = document.createElement("button");
-    btnAlterar.textContent = "Alterar";
-    btnAlterar.onclick = function() {
-        const novoProduto = prompt("Digite o novo nome");
-        spanProduto.textContent = novoProduto;
-    };
-    produtoLi.appendChild(btnAlterar);
+        // botão remover
+        const btnRemover = document.createElement("button");
+        btnRemover.textContent = "Remover";
+        btnRemover.onclick = function() {
+            produtoLi.remove();
+        };
+        produtoLi.appendChild(btnRemover);
 
-    // adiciona na lista
-    lista.appendChild(produtoLi);
+        // botão alterar
+        const btnAlterar = document.createElement("button");
+        btnAlterar.textContent = "Alterar";
+        btnAlterar.onclick = function() {
+            const novoProduto = prompt("Digite o novo nome");
+            spanProduto.textContent = novoProduto;
+        };
+        produtoLi.appendChild(btnAlterar);
+
+        // adiciona na lista
+        lista.appendChild(produtoLi);
     }
 }
 
@@ -48,10 +49,17 @@ function comprarLista(event) {
 
     const lista = document.querySelector("#lista");
     const input = document.querySelector("#produtos");
+    const quant = document.querySelector("#quantidade")
     const produtoDigitado = input.value;
+    const quantDigitado = quant.value
+    const produtoNovo = {
+        nome: produtoDigitado,
+        quantidade: quantDigitado
+    }
+    
+    produtos.push(produtoNovo);
 
     
-    produtos.push(produtoDigitado);
 
     renderizarProdutos()
     // limpa input
